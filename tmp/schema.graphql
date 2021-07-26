@@ -1,0 +1,47 @@
+type Attribute {
+  displayValue: String
+  value: String
+  id: String!
+}
+
+type AttributeSet {
+  id: String!
+  name: String
+  type: String
+  items: [Attribute]
+}
+
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+type Category {
+  name: String
+  products: [Product]!
+}
+
+input CategoryInput {
+  title: String!
+}
+
+type Price {
+  currency: String!
+  amount: Float!
+}
+
+type Product {
+  id: String!
+  name: String!
+  inStock: Boolean
+  gallery: [String]
+  description: String!
+  category: String!
+  attributes: [AttributeSet]
+  prices: [Price!]!
+}
+
+type Query {
+  category(input: CategoryInput): Category
+  currencies: [String]
+}
